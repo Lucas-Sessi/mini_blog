@@ -1,0 +1,97 @@
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+  signOut
+} from 'firebase/auth';
+
+import {useState, useEffect} from 'react';
+import { db } from '../firebase/config'
+
+export const useAutentication = () => {
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
+
+  // cleanup
+
+  const [cancelled, setCancelled] = useState(false);
+
+  const auth = getAuth();
+
+  const checkIfIsCancelled = () => {
+    if(cancelled){
+      return;5
+    }
+  }
+
+
+  // register
+  const createUser = async (data)=> {
+    checkIfIsCancelled();
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      
+      const {user} = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      )
+
+      await updateProfile(user,{
+        displayName: data.displayName,
+      })
+
+      setLoading(false)
+      
+      return user;
+
+    } catch (error) {
+      console.log(error.message)
+      console.log(typeof error.message);
+
+
+      // Autenticação de formulário usando o auth do firebase
+
+      let systemErrorMessage;
+
+      if(error.message.includes('password')){
+        systemErrorMessage = 'A senha precisa ter pelo menos 6 caracteres'
+      }else if(error.message.includes('email-already')){
+        systemErrorMessage = 'Email já cadastrado!'
+      }else{
+        systemErrorMessage = 'Ocorreu um erro, por favor tente novamente mais tarde!'
+      }
+
+      setLoading(false);
+      setError(systemErrorMessage);
+
+    }
+
+  };
+
+  // Logout - sign out
+
+  const logout = ()=> {
+    checkIfIsCancelled();
+
+    signOut(auth);
+  }
+
+  useEffect(()=>{
+    return ()=> setCancelled(true);
+  }, []);
+
+
+  return {
+    auth,
+    createUser,
+    error,
+    loading,
+    logout
+  }
+
+}
