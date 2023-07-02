@@ -12,33 +12,33 @@ const Navbar = ()=> {
 
   return (
     <nav className={styles.navbar}>
-      <NavLink to='/' className={styles.brand}>
+      <NavLink to='/mini_blog/' className={styles.brand}>
         Mini <span>Blog</span>
       </NavLink>
       <ul className={styles.links_list}>
         <li>
-          <NavLink to='/' className={({ isActive }) => (isActive ? styles.active : "")}>Home</NavLink>
+          <NavLink to='/mini_blog/' className={({ isActive }) => (isActive ? styles.active : "")}>Home</NavLink>
         </li>
         <li>
-          <NavLink to='/about' className={({ isActive }) => (isActive ? styles.active : "")}>About</NavLink>
+          <NavLink to='/mini_blog/about' className={({ isActive }) => (isActive ? styles.active : "")}>About</NavLink>
         </li>
         {!user && (
           <>
           <li>
-            <NavLink to='/login' className={({isActive}) => (isActive ? styles.active : "")}>Login</NavLink>
+            <NavLink to='/mini_blog/login' className={({isActive}) => (isActive ? styles.active : "")}>Login</NavLink>
           </li>
           <li>
-            <NavLink to='/register' className={({isActive}) => (isActive ? styles.active : "")} >Register</NavLink>
+            <NavLink to='/mini_blog/register' className={({isActive}) => (isActive ? styles.active : "")} >Register</NavLink>
           </li>
         </>
         )}
         {user && (
           <>
           <li>
-            <NavLink to='/dashboard' className={({isActive}) => (isActive ? styles.active : "")}>Dashboard</NavLink>
+            <NavLink to='/mini_blog/dashboard' className={({isActive}) => (isActive ? styles.active : "")}>Dashboard</NavLink>
           </li>
           <li>
-            <NavLink to='/createpost' className={({isActive})=> (isActive ? styles.active : "")} >Create Post</NavLink>
+            <NavLink to='/mini_blog/createpost' className={({isActive})=> (isActive ? styles.active : "")} >Create Post</NavLink>
           </li>
           </>
         )}

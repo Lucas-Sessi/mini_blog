@@ -10,7 +10,7 @@ const About = () => {
       <h2>Sobre o Mini <span>Blog</span></h2>
       <p>Este projeto consiste em um blog feito em React no Front-end e Firebase no Back-end.</p>
 
-      <Link to='/createpost' className="btn">Criar Post</Link>
+      <Link to='/mini_blog/createpost' className="btn">Criar Post</Link>
     </div>
   );
 };

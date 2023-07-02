@@ -14,6 +14,7 @@ import { AuthProvider } from './context/AuthContext';
 
 // pages
 import Home from './pages/Home/Home';
+import Search from './pages/Search/Search';
 import About from './pages/About/About';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -21,6 +22,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import CreatePost from './pages/CreatePost/CreatePost';
+import Post from './pages/Post/Post';
 
 
 
@@ -48,12 +50,14 @@ function App() {
           <Navbar />
             <div className='container'>
               <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/login' element={!user ? <Login /> : <Navigate to='/'/>} />
-                <Route path='/register' element={!user ? <Register /> : <Navigate to='/' />} />
-                <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to='/login' />} />
-                <Route path='/createpost' element={user ? <CreatePost /> : <Navigate to='/login' />} />
+                <Route path='/mini_blog/' element={<Home />} />
+                <Route path='/mini_blog/search' element={<Search />} />
+                <Route path='/mini_blog/posts/:id' element={<Post />} />
+                <Route path='/mini_blog/about' element={<About />} />
+                <Route path='/mini_blog/login' element={!user ? <Login /> : <Navigate to='/mini_blog/'/>} />
+                <Route path='/mini_blog/register' element={!user ? <Register /> : <Navigate to='/mini_blog/' />} />
+                <Route path='/mini_blog/dashboard' element={user ? <Dashboard /> : <Navigate to='/mini_blog/login' />} />
+                <Route path='/mini_blog/createpost' element={user ? <CreatePost /> : <Navigate to='/mini_blog/login' />} />
               </Routes>
             </div>
           <Footer />
