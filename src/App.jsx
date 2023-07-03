@@ -23,6 +23,7 @@ import Register from './pages/Register/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import CreatePost from './pages/CreatePost/CreatePost';
 import Post from './pages/Post/Post';
+import EditPost from './pages/EditPost/EditPost';
 
 
 
@@ -58,6 +59,7 @@ function App() {
                 <Route path='/mini_blog/register' element={!user ? <Register /> : <Navigate to='/mini_blog/' />} />
                 <Route path='/mini_blog/dashboard' element={user ? <Dashboard /> : <Navigate to='/mini_blog/login' />} />
                 <Route path='/mini_blog/createpost' element={user ? <CreatePost /> : <Navigate to='/mini_blog/login' />} />
+                <Route path='/mini_blog/posts/edit/:id' element={user ? <EditPost /> : <Navigate to='/mini_blog/login' />} />
               </Routes>
             </div>
           <Footer />
