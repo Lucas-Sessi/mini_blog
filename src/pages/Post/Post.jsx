@@ -14,7 +14,7 @@ const Post = () => {
         <div>
           <h1>{post.title}</h1>
           <img src={post.image} alt={post.image} />
-          <p>{post.body}</p>
+          <p style={{maxWidth:'950px', margin:'0 auto', marginTop: '30px'}}>{post.body}</p>
           <h3>Este post trata sobre:</h3>
           <div className={styles.tags}>
             {post.tagsArray.map((tag)=> (
